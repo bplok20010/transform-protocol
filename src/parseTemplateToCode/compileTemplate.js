@@ -1,8 +1,5 @@
 
-
 const escapeRegExp = /\\|'|\r|\n|\u2028|\u2029/g;
-
-const noMatch = /(.)^/;
 
 const escapes = {
     "'": "'",
@@ -41,11 +38,7 @@ function template(text, settings) {
         settings.interpolate.source,
         settings.evaluate.source
     ].join('|') + '|$', 'g');
-    console.log([
-        settings.escape.source,
-        settings.interpolate.source,
-        settings.evaluate.source
-    ].join('|') + '|$');
+
     // Compile the template source, escaping string literals appropriately.
     let index = 0;
     let source = "__p+='";
@@ -54,11 +47,11 @@ function template(text, settings) {
         index = offset + match.length;
 
         if (escape) {
-            source += `";
+            source += `';
 var executor = '${executor}' || 'json';
 if (!$self[executor]) executor = 'json';
 __t = ${escape} === undefined ? '' : ${escape};
-__p += __t;__p+="`;
+__p += $self[executor](__t);\n__p+='`;
         } else if (interpolate) {
             source += "'+\n((__t=(" + interpolate + "))==null?'':__t)+\n'";
         } else if (evaluate) {

@@ -1,10 +1,14 @@
 const compileTemplate = require('../lib/parseTemplateToCode/compileTemplate').default;
+const parseTemplateToCode = require('../lib/parseTemplateToCode').default;
 
 const template = `
 {
-    status: "<?=code?>",
+    status: <?=code?>,
     data: <?json!data?>
 }
 `;
 
-console.log(compileTemplate(template))
+parseTemplateToCode(template, {
+    code: 1,
+    data: [1, 2, 3]
+})
