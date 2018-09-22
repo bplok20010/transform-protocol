@@ -4,7 +4,7 @@
     "description": "基于node.js实现的一种通用性的接口协议转换服务",
     "main": "index.js",
     "scripts": {
-        "start": "transform-es src -d lib -w -c",
+        "start": "transform-es src -d lib -w -c --target node",
         "test": "echo \"Error: no test specified\" && exit 1"
     },
     "repository": {
@@ -28,7 +28,10 @@
     "dependencies": {
         "@babel/runtime": "^7.0.0",
         "@babel/runtime-corejs2": "^7.0.0",
+        "body-parser": "^1.18.3",
         "express": "^4.16.3",
+        "mysql": "^2.16.0",
+        "transform-protocol-template": "^1.0.0",
         "xml2js": "^0.4.19"
     }
 }
