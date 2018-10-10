@@ -55,6 +55,11 @@ module.exports = function (port) {
         log(`${req.method} ${req.path}`);
         log(req.rawBody.slice(0, 520));
 
+        res.header("Access-Control-Allow-Origin", "*");
+        res.header("Access-Control-Allow-Headers", "X-Requested-With");
+        res.header("Access-Control-Allow-Methods", "PUT,POST,GET,DELETE,OPTIONS");
+        res.header("Content-Type", "application/json;charset=utf-8");
+
         const { tid } = req.params;
         let info;
         try {
